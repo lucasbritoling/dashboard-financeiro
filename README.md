@@ -110,4 +110,4 @@ erDiagram
     }
 ```
 
-**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil completo de partidas dobradas. O diagrama ER também não representa integralmente regras condicionais implementadas no banco, como a exigência de cliente ou fornecedor conforme o tipo de operação da nota fiscal. Para detalhes sobre as regras de integridade e validação, consultar o arquivo 01_create_tables.sql
+<small>**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil completo de partidas dobradas. O diagrama ER também não representa integralmente regras condicionais implementadas no banco, como a exigência de cliente ou fornecedor conforme o tipo de operação da nota fiscal. Para detalhes sobre as regras de integridade e validação, consultar o arquivo 01_create_tables.sql</small>
