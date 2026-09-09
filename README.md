@@ -1,7 +1,9 @@
 # Mermaid
 
 <details>
-<summary><b>```mermaid
+<summary><b>Clique para expandir o diagrama do banco de dados</b></summary>
+
+```mermaid
 erDiagram
     %% Relacionamentos - Documentos Fiscais
     clientes |o--o{ notas_fiscais : "cliente_id"
@@ -106,9 +108,3 @@ erDiagram
         date mes_ano
         numeric valor_orcado
     }
-
-```
-</b></summary>
-
-
-**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil de partidas dobradas completo.
