@@ -25,89 +25,89 @@ erDiagram
 
     %% Entidades e Atributos
     contas_contabeis {
-    PK id int
-    UK codigo varchar
-    nome varchar
-    tipo varchar
-}
+        int id PK
+        varchar codigo UK
+        varchar nome
+        varchar tipo
+    }
 
-centros_custo {
-    PK id int
-    UK codigo varchar
-    nome varchar
-}
+    centros_custo {
+        int id PK
+        varchar codigo UK
+        varchar nome
+    }
 
-clientes {
-    PK id int
-    nome varchar
-    segmento varchar
-    regiao varchar
-}
+    clientes {
+        int id PK
+        varchar nome
+        varchar segmento
+        varchar regiao
+    }
 
-fornecedores {
-    PK id int
-    nome varchar
-    categoria varchar
-}
+    fornecedores {
+        int id PK
+        varchar nome
+        varchar categoria
+    }
 
-produtos_servicos {
-    PK id int
-    nome varchar
-    tipo varchar
-    categoria varchar
-    preco_unitario numeric
-    custo_unitario numeric
-}
+    produtos_servicos {
+        int id PK
+        varchar nome
+        varchar tipo
+        varchar categoria
+        numeric preco_unitario
+        numeric custo_unitario
+    }
 
-notas_fiscais {
-    PK id int
-    data date
-    tipo_operacao varchar
-    FK cliente_id int
-    FK fornecedor_id int
-    FK produto_servico_id int
-    valor_bruto numeric
-    impostos numeric
-    valor_liquido numeric
-    data_vencimento date
-    data_pagamento date
-    status_pagamento varchar
-}
+    notas_fiscais {
+        int id PK
+        date data
+        varchar tipo_operacao
+        int cliente_id FK
+        int fornecedor_id FK
+        int produto_servico_id FK
+        numeric valor_bruto
+        numeric impostos
+        numeric valor_liquido
+        date data_vencimento
+        date data_pagamento
+        varchar status_pagamento
+    }
 
-lancamentos_contabeis {
-    PK id int
-    data_competencia date
-    FK conta_id int
-    FK centro_custo_id int
-    FK nota_fiscal_id int
-    valor numeric
-    descricao varchar
-}
+    lancamentos_contabeis {
+        int id PK
+        date data_competencia
+        int conta_id FK
+        int centro_custo_id FK
+        int nota_fiscal_id FK
+        numeric valor
+        varchar descricao
+    }
 
-contas_bancarias {
-    PK id int
-    banco varchar
-    tipo varchar
-}
+    contas_bancarias {
+        int id PK
+        varchar banco
+        varchar tipo
+    }
 
-conciliacoes {
-    PK id int
-    data date
-    FK conta_bancaria_id int
-    FK lancamento_contabil_id int
-    valor numeric
-    tipo varchar
-    descricao varchar
-    conciliado boolean
-}
+    conciliacoes {
+        int id PK
+        date data
+        int conta_bancaria_id FK
+        int lancamento_contabil_id FK
+        numeric valor
+        varchar tipo
+        varchar descricao
+        boolean conciliado
+    }
 
-orcamento {
-    PK id int
-    FK conta_id int
-    FK centro_custo_id int
-    mes_ano date
-    valor_orcado numeric
-}
+    orcamento {
+        int id PK
+        int conta_id FK
+        int centro_custo_id FK
+        date mes_ano
+        numeric valor_orcado
+    }
 ```
 
 **Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil de partidas dobradas completo. Além disso, ele não mostra regras condicionais (como NF entrada/saída determinando fornecedor ou cliente). Para mais detalhes, consultar o arquivo 01_create_tables.sql
