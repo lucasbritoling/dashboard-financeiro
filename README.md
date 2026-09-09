@@ -1,3 +1,5 @@
+# Mermaid
+
 ```mermaid
 erDiagram
     CLIENTE ||--o{ NOTA_FISCAL : "emite para"
