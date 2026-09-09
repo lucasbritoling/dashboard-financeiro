@@ -17,59 +17,59 @@ erDiagram
     CONTA_BANCARIA ||--o{ CONCILIACAO : "registra"
 
     CLIENTE {
-        nome
-        segmento
-        regiao
+        attr nome
+        attr segmento
+        attr regiao
     }
 
     FORNECEDOR {
-        nome
-        categoria
+        attr nome
+        attr categoria
     }
 
     PRODUTO_SERVICO {
-        nome
-        tipo
-        categoria
+        attr nome
+        attr tipo
+        attr categoria
     }
 
     NOTA_FISCAL {
-        data
-        tipo_operacao
-        valor_liquido
-        status_pagamento
+        attr data
+        attr tipo_operacao
+        attr valor_liquido
+        attr status_pagamento
     }
 
     CONTA_CONTABIL {
-        codigo
-        nome
-        tipo
+        attr codigo
+        attr nome
+        attr tipo
     }
 
     CENTRO_CUSTO {
-        codigo
-        nome
+        attr codigo
+        attr nome
     }
 
     LANCAMENTO_CONTABIL {
-        data_competencia
-        valor
-        descricao
+        attr data_competencia
+        attr valor
+        attr descricao
     }
 
     ORCAMENTO {
-        mes_ano
-        valor_orcado
+        attr mes_ano
+        attr valor_orcado
     }
 
     CONTA_BANCARIA {
-        banco
-        tipo
+        attr banco
+        attr tipo
     }
 
     CONCILIACAO {
-        data
-        valor
-        conciliado
+        attr data
+        attr valor
+        attr conciliado
     }
 ```
