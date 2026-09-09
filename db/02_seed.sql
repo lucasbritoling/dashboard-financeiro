@@ -9,7 +9,7 @@
 -- Observação:
 -- Esta seed prioriza integridade referencial, variedade e volume
 -- suficientes para exploração no PostgreSQL/Power BI.
--- Não cria tabelas, colunas ou regras fora do Schema V4.
+-- Não cria tabelas, colunas ou regras fora do 01_create_tables.sql
 -- ============================================================
 
 BEGIN;
@@ -17,7 +17,7 @@ BEGIN;
 -- ============================================================
 -- 0. LIMPEZA
 -- ============================================================
--- Permite executar a seed novamente em um banco de desenvolvimento.
+-- Permite reexecutar em um banco de desenvolvimento.
 -- As tabelas são truncadas na ordem reversa das dependências.
 -- ============================================================
 
