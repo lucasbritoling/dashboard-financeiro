@@ -25,89 +25,89 @@ erDiagram
 
     %% Entidades e Atributos
     contas_contabeis {
-        int id PK
-        varchar codigo UK
-        varchar nome
-        varchar tipo
-    }
+    PK id int
+    UK codigo varchar
+    nome varchar
+    tipo varchar
+}
 
-    centros_custo {
-        int id PK
-        varchar codigo UK
-        varchar nome
-    }
+centros_custo {
+    PK id int
+    UK codigo varchar
+    nome varchar
+}
 
-    clientes {
-        int id PK
-        varchar nome
-        varchar segmento
-        varchar regiao
-    }
+clientes {
+    PK id int
+    nome varchar
+    segmento varchar
+    regiao varchar
+}
 
-    fornecedores {
-        int id PK
-        varchar nome
-        varchar categoria
-    }
+fornecedores {
+    PK id int
+    nome varchar
+    categoria varchar
+}
 
-    produtos_servicos {
-        int id PK
-        varchar nome
-        varchar tipo
-        varchar categoria
-        numeric preco_unitario
-        numeric custo_unitario
-    }
+produtos_servicos {
+    PK id int
+    nome varchar
+    tipo varchar
+    categoria varchar
+    preco_unitario numeric
+    custo_unitario numeric
+}
 
-    notas_fiscais {
-        int id PK
-        date data
-        varchar tipo_operacao
-        int cliente_id FK
-        int fornecedor_id FK
-        int produto_servico_id FK
-        numeric valor_bruto
-        numeric impostos
-        numeric valor_liquido
-        date data_vencimento
-        date data_pagamento
-        varchar status_pagamento
-    }
+notas_fiscais {
+    PK id int
+    data date
+    tipo_operacao varchar
+    FK cliente_id int
+    FK fornecedor_id int
+    FK produto_servico_id int
+    valor_bruto numeric
+    impostos numeric
+    valor_liquido numeric
+    data_vencimento date
+    data_pagamento date
+    status_pagamento varchar
+}
 
-    lancamentos_contabeis {
-        int id PK
-        date data_competencia
-        int conta_id FK
-        int centro_custo_id FK
-        int nota_fiscal_id FK
-        numeric valor
-        varchar descricao
-    }
+lancamentos_contabeis {
+    PK id int
+    data_competencia date
+    FK conta_id int
+    FK centro_custo_id int
+    FK nota_fiscal_id int
+    valor numeric
+    descricao varchar
+}
 
-    contas_bancarias {
-        int id PK
-        varchar banco
-        varchar tipo
-    }
+contas_bancarias {
+    PK id int
+    banco varchar
+    tipo varchar
+}
 
-    conciliacoes {
-        int id PK
-        date data
-        int conta_bancaria_id FK
-        int lancamento_contabil_id FK
-        numeric valor
-        varchar tipo
-        varchar descricao
-        boolean conciliado
-    }
+conciliacoes {
+    PK id int
+    data date
+    FK conta_bancaria_id int
+    FK lancamento_contabil_id int
+    valor numeric
+    tipo varchar
+    descricao varchar
+    conciliado boolean
+}
 
-    orcamento {
-        int id PK
-        int conta_id FK
-        int centro_custo_id FK
-        date mes_ano
-        numeric valor_orcado
-    }
+orcamento {
+    PK id int
+    FK conta_id int
+    FK centro_custo_id int
+    mes_ano date
+    valor_orcado numeric
+}
 ```
 
-**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil de partidas dobradas completo.
+**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil de partidas dobradas completo. Além disso, ele não mostra regras condicionais (como NF entrada/saída determinando fornecedor ou cliente). Para mais detalhes, consultar o arquivo 01_create_tables.sql
