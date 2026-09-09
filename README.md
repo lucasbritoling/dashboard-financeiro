@@ -2,74 +2,107 @@
 
 ```mermaid
 erDiagram
-    CLIENTE ||--o{ NOTA_FISCAL : "emite para"
-    FORNECEDOR ||--o{ NOTA_FISCAL : "recebe de"
-    PRODUTO_SERVICO ||--o{ NOTA_FISCAL : "fatura"
+    %% Relacionamentos - Documentos Fiscais
+    clientes |o--o{ notas_fiscais : "cliente_id"
+    fornecedores |o--o{ notas_fiscais : "fornecedor_id"
+    produtos_servicos ||--o{ notas_fiscais : "produto_servico_id"
 
-    NOTA_FISCAL |o--o{ LANCAMENTO_CONTABIL : "gera"
-    CONTA_CONTABIL ||--o{ LANCAMENTO_CONTABIL : "classifica"
-    CENTRO_CUSTO ||--o{ LANCAMENTO_CONTABIL : "apropria"
+    %% Relacionamentos - Lançamentos Contábeis
+    contas_contabeis ||--o{ lancamentos_contabeis : "conta_id"
+    centros_custo ||--o{ lancamentos_contabeis : "centro_custo_id"
+    notas_fiscais |o--o{ lancamentos_contabeis : "nota_fiscal_id"
 
-    CONTA_CONTABIL ||--o{ ORCAMENTO : "meta de"
-    CENTRO_CUSTO ||--o{ ORCAMENTO : "aloca em"
+    %% Relacionamentos - Orçamento
+    contas_contabeis ||--o{ orcamento : "conta_id"
+    centros_custo ||--o{ orcamento : "centro_custo_id"
 
-    LANCAMENTO_CONTABIL |o--o{ CONCILIACAO : "comprova"
-    CONTA_BANCARIA ||--o{ CONCILIACAO : "registra"
+    %% Relacionamentos - Movimentações e Conciliação
+    contas_bancarias ||--o{ conciliacoes : "conta_bancaria_id"
+    lancamentos_contabeis |o--o{ conciliacoes : "lancamento_contabil_id"
 
-    CLIENTE {
-        attr nome
-        attr segmento
-        attr regiao
+    %% Entidades e Atributos
+    contas_contabeis {
+        int id PK
+        varchar codigo UK
+        varchar nome
+        varchar tipo
     }
 
-    FORNECEDOR {
-        attr nome
-        attr categoria
+    centros_custo {
+        int id PK
+        varchar codigo UK
+        varchar nome
     }
 
-    PRODUTO_SERVICO {
-        attr nome
-        attr tipo
-        attr categoria
+    clientes {
+        int id PK
+        varchar nome
+        varchar segmento
+        varchar regiao
     }
 
-    NOTA_FISCAL {
-        attr data
-        attr tipo_operacao
-        attr valor_liquido
-        attr status_pagamento
+    fornecedores {
+        int id PK
+        varchar nome
+        varchar categoria
     }
 
-    CONTA_CONTABIL {
-        attr codigo
-        attr nome
-        attr tipo
+    produtos_servicos {
+        int id PK
+        varchar nome
+        varchar tipo
+        varchar categoria
+        numeric preco_unitario
+        numeric custo_unitario
     }
 
-    CENTRO_CUSTO {
-        attr codigo
-        attr nome
+    notas_fiscais {
+        int id PK
+        date data
+        varchar tipo_operacao
+        int cliente_id FK
+        int fornecedor_id FK
+        int produto_servico_id FK
+        numeric valor_bruto
+        numeric impostos
+        numeric valor_liquido
+        date data_vencimento
+        date data_pagamento
+        varchar status_pagamento
     }
 
-    LANCAMENTO_CONTABIL {
-        attr data_competencia
-        attr valor
-        attr descricao
+    lancamentos_contabeis {
+        int id PK
+        date data_competencia
+        int conta_id FK
+        int centro_custo_id FK
+        int nota_fiscal_id FK
+        numeric valor
+        varchar descricao
     }
 
-    ORCAMENTO {
-        attr mes_ano
-        attr valor_orcado
+    contas_bancarias {
+        int id PK
+        varchar banco
+        varchar tipo
     }
 
-    CONTA_BANCARIA {
-        attr banco
-        attr tipo
+    conciliacoes {
+        int id PK
+        date data
+        int conta_bancaria_id FK
+        int lancamento_contabil_id FK
+        numeric valor
+        varchar tipo
+        varchar descricao
+        boolean conciliado
     }
 
-    CONCILIACAO {
-        attr data
-        attr valor
-        attr conciliado
+    orcamento {
+        int id PK
+        int conta_id FK
+        int centro_custo_id FK
+        date mes_ano
+        numeric valor_orcado
     }
 ```
