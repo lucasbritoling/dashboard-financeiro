@@ -108,3 +108,5 @@ erDiagram
         date mes_ano
         numeric valor_orcado
     }
+
+**Nota**: o modelo foi desenhado para análise financeira gerencial. `lancamentos_contabeis` representa fatos classificados para análise de DRE, não um diário contábil de partidas dobradas completo.
