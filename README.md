@@ -1,92 +1,73 @@
 ```mermaid
 erDiagram
-    %% ==========================================
-    %% Relacionamentos (Documentos Fiscais)
-    %% ==========================================
-    CLIENTE ||--o{ NOTA_FISCAL : recebe
-    FORNECEDOR ||--o{ NOTA_FISCAL : emite
-    PRODUTO_SERVICO ||--o{ NOTA_FISCAL : refere_se_a
+    CLIENTE ||--o{ NOTA_FISCAL : "emite para"
+    FORNECEDOR ||--o{ NOTA_FISCAL : "recebe de"
+    PRODUTO_SERVICO ||--o{ NOTA_FISCAL : "fatura"
 
-    %% ==========================================
-    %% Relacionamentos (Lançamentos e Contabilidade)
-    %% ==========================================
-    NOTA_FISCAL |o--o{ LANCAMENTO_CONTABIL : origina
-    CONTA_CONTABIL ||--o{ LANCAMENTO_CONTABIL : classifica
-    CENTRO_CUSTO ||--o{ LANCAMENTO_CONTABIL : apropria
+    NOTA_FISCAL |o--o{ LANCAMENTO_CONTABIL : "gera"
+    CONTA_CONTABIL ||--o{ LANCAMENTO_CONTABIL : "classifica"
+    CENTRO_CUSTO ||--o{ LANCAMENTO_CONTABIL : "apropria"
 
-    %% ==========================================
-    %% Relacionamentos (Orçamento)
-    %% ==========================================
-    CONTA_CONTABIL ||--o{ ORCAMENTO : planeja
-    CENTRO_CUSTO ||--o{ ORCAMENTO : aloca
+    CONTA_CONTABIL ||--o{ ORCAMENTO : "meta de"
+    CENTRO_CUSTO ||--o{ ORCAMENTO : "aloca em"
 
-    %% ==========================================
-    %% Relacionamentos (Fluxo de Caixa e Bancos)
-    %% ==========================================
-    LANCAMENTO_CONTABIL |o--o{ CONCILIACAO : justifica
-    CONTA_BANCARIA ||--o{ CONCILIACAO : movimenta
+    LANCAMENTO_CONTABIL |o--o{ CONCILIACAO : "comprova"
+    CONTA_BANCARIA ||--o{ CONCILIACAO : "registra"
 
-    %% ==========================================
-    %% Entidades e Atributos Conceituais
-    %% ==========================================
-    
     CLIENTE {
-        string nome
-        string segmento
-        string regiao
+        nome
+        segmento
+        regiao
     }
 
     FORNECEDOR {
-        string nome
-        string categoria
+        nome
+        categoria
     }
 
     PRODUTO_SERVICO {
-        string nome
-        string tipo "Produto, Serviço"
-        numeric preco
-        numeric custo
+        nome
+        tipo
+        categoria
     }
 
     NOTA_FISCAL {
-        date data
-        string tipo_operacao "Entrada, Saída"
-        numeric valor_liquido
-        date data_vencimento
-        string status "Pendente, Pago, Cancelado"
+        data
+        tipo_operacao
+        valor_liquido
+        status_pagamento
     }
 
     CONTA_CONTABIL {
-        string codigo
-        string nome
-        string tipo "Receita, Custo, Despesa"
+        codigo
+        nome
+        tipo
     }
 
     CENTRO_CUSTO {
-        string codigo
-        string nome
+        codigo
+        nome
     }
 
     LANCAMENTO_CONTABIL {
-        date data_competencia
-        numeric valor
-        string descricao
+        data_competencia
+        valor
+        descricao
     }
 
     ORCAMENTO {
-        date mes_ano
-        numeric valor_orcado
+        mes_ano
+        valor_orcado
     }
 
     CONTA_BANCARIA {
-        string banco
-        string tipo "Corrente, Aplicação"
+        banco
+        tipo
     }
 
     CONCILIACAO {
-        date data
-        string tipo "Entrada, Saída"
-        numeric valor
-        boolean conciliado
+        data
+        valor
+        conciliado
     }
 ```
