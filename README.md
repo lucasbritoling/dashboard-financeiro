@@ -4,7 +4,7 @@
 <summary><b>Clique para expandir o diagrama do banco de dados</b></summary>
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'forest'}}%%
 erDiagram
     %% Relacionamentos - Documentos Fiscais
     clientes |o--o{ notas_fiscais : "cliente_id"
